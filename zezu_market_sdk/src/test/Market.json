@@ -1,0 +1,676 @@
+[
+    {
+      "type": "impl",
+      "name": "ImpleMarket",
+      "interface_name": "zezu_market::market::Imarket"
+    },
+    {
+      "type": "struct",
+      "name": "zezu_market::order::Order",
+      "members": [
+        {
+          "name": "trader",
+          "type": "core::felt252"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252"
+        },
+        {
+          "name": "num_of_listing",
+          "type": "core::felt252"
+        },
+        {
+          "name": "token_id",
+          "type": "core::felt252"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252"
+        },
+        {
+          "name": "price",
+          "type": "core::felt252"
+        },
+        {
+          "name": "asset_type",
+          "type": "core::felt252"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        }
+      ]
+    },
+    {
+      "type": "enum",
+      "name": "core::bool",
+      "variants": [
+        {
+          "name": "False",
+          "type": "()"
+        },
+        {
+          "name": "True",
+          "type": "()"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zezu_market::collection_offer::CollectionOffer",
+      "members": [
+        {
+          "name": "trader",
+          "type": "core::felt252"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252"
+        },
+        {
+          "name": "num_of_listing",
+          "type": "core::felt252"
+        },
+        {
+          "name": "price_per_item",
+          "type": "core::felt252"
+        },
+        {
+          "name": "asset_type",
+          "type": "core::felt252"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zezu_market::order::CancelOrder",
+      "members": [
+        {
+          "name": "order_hash",
+          "type": "core::felt252"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zezu_market::order::TakeOrderInput",
+      "members": [
+        {
+          "name": "trader",
+          "type": "core::felt252"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252"
+        },
+        {
+          "name": "num_of_listing",
+          "type": "core::felt252"
+        },
+        {
+          "name": "token_id",
+          "type": "core::felt252"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252"
+        },
+        {
+          "name": "price",
+          "type": "core::felt252"
+        },
+        {
+          "name": "asset_type",
+          "type": "core::felt252"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        },
+        {
+          "name": "order_type",
+          "type": "core::felt252"
+        },
+        {
+          "name": "signature",
+          "type": "core::array::Array::<core::felt252>"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "zezu_market::collection_offer::TakeCollectionOffer",
+      "members": [
+        {
+          "name": "trader",
+          "type": "core::felt252"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252"
+        },
+        {
+          "name": "num_of_listing",
+          "type": "core::felt252"
+        },
+        {
+          "name": "price_per_item",
+          "type": "core::felt252"
+        },
+        {
+          "name": "asset_type",
+          "type": "core::felt252"
+        },
+        {
+          "name": "salt",
+          "type": "core::felt252"
+        },
+        {
+          "name": "token_id",
+          "type": "core::felt252"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252"
+        },
+        {
+          "name": "signature",
+          "type": "core::array::Array::<core::felt252>"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "zezu_market::market::Imarket",
+      "items": [
+        {
+          "type": "function",
+          "name": "set_protocol_fee",
+          "inputs": [
+            {
+              "name": "_new_fee",
+              "type": "core::felt252"
+            },
+            {
+              "name": "_fund_addr",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "set_pool_address",
+          "inputs": [
+            {
+              "name": "_new_pool",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "increment_nonce",
+          "inputs": [],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "set_collection_royalty",
+          "inputs": [
+            {
+              "name": "recipent_address",
+              "type": "core::felt252"
+            },
+            {
+              "name": "rate",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "validate_oder_public",
+          "inputs": [
+            {
+              "name": "order",
+              "type": "zezu_market::order::Order"
+            },
+            {
+              "name": "order_type",
+              "type": "core::felt252"
+            },
+            {
+              "name": "signature",
+              "type": "core::array::Array::<core::felt252>"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::bool"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "validate_collection_offer_public",
+          "inputs": [
+            {
+              "name": "collection_offer",
+              "type": "zezu_market::collection_offer::CollectionOffer"
+            },
+            {
+              "name": "amount",
+              "type": "core::felt252"
+            },
+            {
+              "name": "signature",
+              "type": "core::array::Array::<core::felt252>"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::bool"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_order_message_hash",
+          "inputs": [
+            {
+              "name": "order",
+              "type": "zezu_market::order::Order"
+            },
+            {
+              "name": "order_type",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::felt252"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_collection_offer_message_hash",
+          "inputs": [
+            {
+              "name": "collection_offer",
+              "type": "zezu_market::collection_offer::CollectionOffer"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::felt252"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "cancel_order",
+          "inputs": [
+            {
+              "name": "cancel_order",
+              "type": "zezu_market::order::CancelOrder"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "take_ask",
+          "inputs": [
+            {
+              "name": "input",
+              "type": "zezu_market::order::TakeOrderInput"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "take_bid",
+          "inputs": [
+            {
+              "name": "input",
+              "type": "zezu_market::order::TakeOrderInput"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "take_collection_offer",
+          "inputs": [
+            {
+              "name": "input",
+              "type": "zezu_market::collection_offer::TakeCollectionOffer"
+            }
+          ],
+          "outputs": [],
+          "state_mutability": "external"
+        },
+        {
+          "type": "function",
+          "name": "get_protocol_fee",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "(core::starknet::contract_address::ContractAddress, core::felt252)"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_pool_address",
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_user_nonce",
+          "inputs": [
+            {
+              "name": "user_address",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "core::felt252"
+            }
+          ],
+          "state_mutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "get_collection_royalty",
+          "inputs": [
+            {
+              "name": "collection",
+              "type": "core::felt252"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "(core::felt252, core::felt252)"
+            }
+          ],
+          "state_mutability": "view"
+        }
+      ]
+    },
+    {
+      "type": "constructor",
+      "name": "constructor",
+      "inputs": [
+        {
+          "name": "_pool",
+          "type": "core::felt252"
+        },
+        {
+          "name": "_admin",
+          "type": "core::felt252"
+        },
+        {
+          "name": "_protocol_fee",
+          "type": "core::felt252"
+        },
+        {
+          "name": "_fund_address",
+          "type": "core::felt252"
+        }
+      ]
+    },
+    {
+      "type": "struct",
+      "name": "core::integer::u256",
+      "members": [
+        {
+          "name": "low",
+          "type": "core::integer::u128"
+        },
+        {
+          "name": "high",
+          "type": "core::integer::u128"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::SetProtocolFee",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "fund_address",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "kind": "key"
+        },
+        {
+          "name": "rate",
+          "type": "core::integer::u256",
+          "kind": "key"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::SetPool",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "pool_address",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "kind": "key"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::IncrementNonce",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "user_address",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "kind": "key"
+        },
+        {
+          "name": "nonce",
+          "type": "core::integer::u256",
+          "kind": "key"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::SetCollectionRoyalty",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "recipent_address",
+          "type": "core::felt252",
+          "kind": "key"
+        },
+        {
+          "name": "rate",
+          "type": "core::felt252",
+          "kind": "key"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::CancelTrade",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "user_address",
+          "type": "core::starknet::contract_address::ContractAddress",
+          "kind": "key"
+        },
+        {
+          "name": "order_hash",
+          "type": "core::felt252",
+          "kind": "key"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252",
+          "kind": "data"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::Execution",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "order_hash",
+          "type": "core::felt252",
+          "kind": "key"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "token_id",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "price",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "order_type",
+          "type": "core::felt252",
+          "kind": "data"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::ExecutionCollectionOffer",
+      "kind": "struct",
+      "members": [
+        {
+          "name": "order_hash",
+          "type": "core::felt252",
+          "kind": "key"
+        },
+        {
+          "name": "collection",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "token_id",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "amount",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "price",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "order_type",
+          "type": "core::felt252",
+          "kind": "data"
+        },
+        {
+          "name": "remaining",
+          "type": "core::felt252",
+          "kind": "data"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "zezu_market::market::Market::Event",
+      "kind": "enum",
+      "variants": [
+        {
+          "name": "SetProtocolFee",
+          "type": "zezu_market::market::Market::SetProtocolFee",
+          "kind": "nested"
+        },
+        {
+          "name": "SetPool",
+          "type": "zezu_market::market::Market::SetPool",
+          "kind": "nested"
+        },
+        {
+          "name": "IncrementNonce",
+          "type": "zezu_market::market::Market::IncrementNonce",
+          "kind": "nested"
+        },
+        {
+          "name": "SetCollectionRoyalty",
+          "type": "zezu_market::market::Market::SetCollectionRoyalty",
+          "kind": "nested"
+        },
+        {
+          "name": "CancelTrade",
+          "type": "zezu_market::market::Market::CancelTrade",
+          "kind": "nested"
+        },
+        {
+          "name": "Execution",
+          "type": "zezu_market::market::Market::Execution",
+          "kind": "nested"
+        },
+        {
+          "name": "ExecutionCollectionOffer",
+          "type": "zezu_market::market::Market::ExecutionCollectionOffer",
+          "kind": "nested"
+        }
+      ]
+    }
+  ]
